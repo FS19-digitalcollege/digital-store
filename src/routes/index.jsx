@@ -5,11 +5,9 @@ import PageProdutos from "../pages/PageProdutos";
 import PageCategorias from "../pages/PageCategorias";
 import PageMeusPedidos from "../pages/PageMeusPedidos";
 import PageNotFound from "../pages/PageNotFound";
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 const Ways = () => {
-    const { isLogged } = useContext(AuthContext);
     return (
         <BrowserRouter>
             <Routes>
@@ -17,11 +15,14 @@ const Ways = () => {
                     <Route index element={<PageHome />} />
                     <Route path={'/produtos'} element={<PageProdutos />} />
                     <Route path={'/categorias'} element={<PageCategorias />} />
-                    {
-                        isLogged && (
-                            <Route path={'/meus-pedidos'} element={<PageMeusPedidos />} />
-                        )
-                    }
+                    <Route 
+                        path={'/meus-pedidos'} 
+                        element={
+                            <ProtectedRoute>
+                                <PageMeusPedidos />
+                            </ProtectedRoute>
+                        }
+                    />
                 </Route>
                 <Route path={'*'} element={<PageNotFound />} />
             </Routes>

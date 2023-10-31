@@ -4,9 +4,13 @@ import { AuthContext } from "./contexts/AuthContext";
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
+  const context = {
+    isLogged,
+    setIsLogged,
+  }
   return (
     <>
-      <AuthContext.Provider value={{isLogged, setIsLogged}}>
+      <AuthContext.Provider value={context}>
         <Suspense>
           <Ways />
         </Suspense>
