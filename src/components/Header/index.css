@@ -37,8 +37,104 @@ header .busca box-icon:hover{
     fill: #C92071;
 }
 header .acoes{
-    border: 1px solid red;
     margin-left: 48px;
+    display: flex;
+    position: relative;
+}
+header .acoes a{
+    line-height: 40px;
+    padding: 0 26px;
+    display: inline-block;
+    transition-duration: 200ms;
+}
+header .acoes .underlined{
+    color: #474747;
+    text-decoration: underline;
+}
+header .acoes .underlined:hover{
+    color: #C92071;
+}
+header .acoes .filled{
+    background-color: #C92071;
+    color: #FFFFFF;
+    border-radius: 5px;
+    margin-right: 70px;
+}
+header .acoes .filled:hover{
+    background-color: #991956;
+}
+header .acoes box-icon{
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    fill: #C92071;
+    cursor: pointer;
+    position: relative;
+}
+header .acoes box-icon::after{
+    content: attr(items);
+    line-height: 16px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 0 5px;
+    font-size: 10px;
+    color: #FFFFFF;
+    background-color: #C92071;
+    position: absolute;
+    top: 0;
+    left: 24px;
+}
+header .cart{
+    width: 315px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: 0 10px 30px 0 #00000020;
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    opacity: 0;
+    visibility: hidden;
+    transition-duration: 300ms;
+}
+header .cart.active{
+    opacity: 1;
+    visibility: visible;
+}
+header .cart h3{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: .75px;
+}
+header .cart > h3:first-of-type{
+    margin-bottom: 20px;
+}
+header .cart > h3:last-of-type{
+    margin-top: 20px;
+}
+header .cart ul{
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+header .cart ul li{
+    display: flex;
+    gap: 20px;
+}
+header .cart ul li .info{
+    flex: 1;
+}
+header .cart ul li img{
+    width: 71px;
+    height: 58px;
+    border-radius: 3px;
+}
+header .cart ul li h3{
+    line-height: 20px;
 }
 
 header nav{
