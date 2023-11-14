@@ -1,7 +1,9 @@
+import ListarProdutos from "../../components/ListarProdutos";
+
 const PageProdutos = () => {
     return (
         <>
-            <h1>Produtos</h1>
+            <ListarProdutos />
         </>
     );
 }
