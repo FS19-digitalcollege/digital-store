@@ -1,6 +1,52 @@
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 const ListarProdutos = () => {
+
+    const [marcas, setMarcas] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+    const [generos, setGeneros] = useState([]);
+    const [estados, setEstados] = useState([]);
+
+    const getMarcas = () => {
+        fetch('http://localhost:3000/marcas')
+            .then(response => response.json())
+            .then(response => {
+                setMarcas(response);
+            })
+    }
+
+    const getCategorias = () => {
+        fetch('http://localhost:3000/categorias')
+            .then(response => response.json())
+            .then(response => {
+                setCategorias(response)
+            })
+    }
+
+    const getGeneros = () => {
+        fetch('http://localhost:3000/generos')
+            .then(response => response.json())
+            .then(response => {
+                setGeneros(response)
+            })
+    }
+
+    const getEstados = () => {
+        fetch('http://localhost:3000/estados')
+            .then(response => response.json())
+            .then(response => {
+                setEstados(response)
+            })
+    }
+
+    useEffect(() => {
+        getMarcas();
+        getCategorias();
+        getGeneros();
+        getEstados();
+    }, []);
+
     return (
         <>
             <ListarProdutosContainer>
@@ -9,79 +55,74 @@ const ListarProdutos = () => {
                     <hr />
                     <h6>Marca</h6>
                     <ul>
-                        <li>
-                            <label htmlFor="marca1">
-                                <input id='marca1' type="checkbox" />
-                                <span></span>
-                                Adiddas
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
+                        {
+                            marcas.map(m => (
+                                <li key={m.id}>
+                                    <label htmlFor={`marca${m.id}`}>
+                                        <input id={`marca${m.id}`} type="checkbox" />
+                                        <span></span>
+                                        {m.nome}
+                                    </label>
+                                </li>
+                            ))
+                        }
                     </ul>
                     <h6>Categoria</h6>
                     <ul>
-                        <li>
-                            <label htmlFor="marca1">
-                                <input id='marca1' type="checkbox" />
-                                <span></span>
-                                Adiddas
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
-                        <li>
-                            <label htmlFor="marca2">
-                                <input id='marca2' type="checkbox" />
-                                <span></span>
-                                Calenciaga
-                            </label>
-                        </li>
+                        {
+                            categorias.map(c => (
+                                <li key={c.id}>
+                                    <label htmlFor={`categoria${c.id}`}>
+                                        <input id={`categoria${c.id}`} type="checkbox" />
+                                        <span></span>
+                                        {c.nome}
+                                    </label>
+                                </li>
+                            ))
+                        }
+
+                    </ul>
+                    <h6>Gêneros</h6>
+                    <ul>
+                        {
+                            generos.map(m => (
+                                <li key={m.id}>
+                                    <label htmlFor={`generos${m.id}`}>
+                                        <input id={`generos${m.id}`} type="checkbox" />
+                                        <span></span>
+                                        {m.genero}
+                                    </label>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                    <h6>Gêneros</h6>
+                    <ul>
+                        {
+                            generos.map(m => (
+                                <li key={m.id}>
+                                    <label htmlFor={`generos${m.id}`}>
+                                        <input id={`generos${m.id}`} type="checkbox" />
+                                        <span></span>
+                                        {m.genero}
+                                    </label>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                    <h6>Estados</h6>
+                    <ul>
+                        {
+                            estados.map(e => (
+                                <li key={e.id}>
+                                    <label htmlFor={`estado${e.id}`}>
+                                        <input id={`estado${e.id}`} type="radio" />
+                                        <span></span>
+                                        {e.estado}
+                                    </label>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </ListarProdutosFilter>
                 <ListarProdutosList>Lista</ListarProdutosList>

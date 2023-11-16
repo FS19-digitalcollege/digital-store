@@ -1,0 +1,66 @@
+{
+    "marcas": [
+        {
+            "id": 1,
+            "nome": "Nike"
+        },
+        {
+            "id": 2,
+            "nome": "Adidas"
+        },
+        {
+            "id": 3,
+            "nome": "Olympikus"
+        },
+        {
+            "id": 4,
+            "nome": "Umbro"
+        },
+        {
+            "id": 5,
+            "nome": "Puma"
+        }
+    ],
+    "categorias":[
+        {
+            "id":1,
+            "nome": "SportLazer"
+        },
+        {
+            "id":2,
+            "nome": "Casual"
+        },
+        {
+            "id":3,
+            "nome": "Ultilitario"
+        },
+        {
+            "id":4,
+            "nome": "Corrida"
+        }
+    ],
+    "generos": [
+        {
+            "id": 1,
+            "genero": "masculino"
+        },
+        {
+            "id": 2,
+            "genero": "feminino"
+        },
+        {
+            "id": 3,
+            "genero": "unissex"
+        }
+    ],
+    "estados": [
+        {
+            "id": 1,
+            "estado": "novo"
+        },
+        {
+            "id": 2,
+            "estado": "usado"
+        }
+    ]
+}
