@@ -6,6 +6,8 @@ import PageCategorias from "../pages/PageCategorias";
 import PageMeusPedidos from "../pages/PageMeusPedidos";
 import PageNotFound from "../pages/PageNotFound";
 import ProtectedRoute from "./ProtectedRoute";
+import DashBoardLayout from "../layouts/DashboardLayout";
+import Dashboard from "../pages/Dashboard";
 
 const Ways = () => {
     return (
@@ -23,6 +25,9 @@ const Ways = () => {
                             </ProtectedRoute>
                         }
                     />
+                </Route>
+                <Route path={'/dashboard'} element={<DashBoardLayout />}>
+                    <Route index element={<Dashboard />} />
                 </Route>
                 <Route path={'*'} element={<PageNotFound />} />
             </Routes>

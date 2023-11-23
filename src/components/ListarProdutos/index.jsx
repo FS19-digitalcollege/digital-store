@@ -1,51 +1,15 @@
-import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import { useMarcas } from '../../hooks/useMarcas';
+import { useCategorias } from '../../hooks/useCategorias';
+import { useGeneros } from '../../hooks/useGeneros';
+import { useEstados } from '../../hooks/useEstados';
 
 const ListarProdutos = () => {
 
-    const [marcas, setMarcas] = useState([]);
-    const [categorias, setCategorias] = useState([]);
-    const [generos, setGeneros] = useState([]);
-    const [estados, setEstados] = useState([]);
-
-    const getMarcas = () => {
-        fetch('http://localhost:3000/marcas')
-            .then(response => response.json())
-            .then(response => {
-                setMarcas(response);
-            })
-    }
-
-    const getCategorias = () => {
-        fetch('http://localhost:3000/categorias')
-            .then(response => response.json())
-            .then(response => {
-                setCategorias(response)
-            })
-    }
-
-    const getGeneros = () => {
-        fetch('http://localhost:3000/generos')
-            .then(response => response.json())
-            .then(response => {
-                setGeneros(response)
-            })
-    }
-
-    const getEstados = () => {
-        fetch('http://localhost:3000/estados')
-            .then(response => response.json())
-            .then(response => {
-                setEstados(response)
-            })
-    }
-
-    useEffect(() => {
-        getMarcas();
-        getCategorias();
-        getGeneros();
-        getEstados();
-    }, []);
+    const { data: dataMarcas, isLoading: isLoadingMarcas } = useMarcas();
+    const { data: dataCategorias, isLoading: isLoadingCategorias } = useCategorias();
+    const { data: dataGeneros, isLoading: isLoadingGeneros } = useGeneros();
+    const { data: dataEstados, isLoading: isLoadingEstados } = useEstados();
 
     return (
         <>
@@ -56,7 +20,7 @@ const ListarProdutos = () => {
                     <h6>Marca</h6>
                     <ul>
                         {
-                            marcas.map(m => (
+                            isLoadingMarcas || dataMarcas.map(m => (
                                 <li key={m.id}>
                                     <label htmlFor={`marca${m.id}`}>
                                         <input id={`marca${m.id}`} type="checkbox" />
@@ -70,7 +34,7 @@ const ListarProdutos = () => {
                     <h6>Categoria</h6>
                     <ul>
                         {
-                            categorias.map(c => (
+                            isLoadingCategorias || dataCategorias.map(c => (
                                 <li key={c.id}>
                                     <label htmlFor={`categoria${c.id}`}>
                                         <input id={`categoria${c.id}`} type="checkbox" />
@@ -85,21 +49,7 @@ const ListarProdutos = () => {
                     <h6>Gêneros</h6>
                     <ul>
                         {
-                            generos.map(m => (
-                                <li key={m.id}>
-                                    <label htmlFor={`generos${m.id}`}>
-                                        <input id={`generos${m.id}`} type="checkbox" />
-                                        <span></span>
-                                        {m.genero}
-                                    </label>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                    <h6>Gêneros</h6>
-                    <ul>
-                        {
-                            generos.map(m => (
+                            isLoadingGeneros || dataGeneros.map(m => (
                                 <li key={m.id}>
                                     <label htmlFor={`generos${m.id}`}>
                                         <input id={`generos${m.id}`} type="checkbox" />
@@ -113,10 +63,10 @@ const ListarProdutos = () => {
                     <h6>Estados</h6>
                     <ul>
                         {
-                            estados.map(e => (
+                            isLoadingEstados || dataEstados.map(e => (
                                 <li key={e.id}>
                                     <label htmlFor={`estado${e.id}`}>
-                                        <input id={`estado${e.id}`} type="radio" />
+                                        <input id={`estado${e.id}`} name="estado" type="radio" value={e.id} />
                                         <span></span>
                                         {e.estado}
                                     </label>
@@ -153,7 +103,7 @@ const ListarProdutosFilter = styled.div`
         display: flex;
         align-items: center;
         gap: 10px;
-        & input{
+        & input[type="checkbox"]{
             width: 22px;
             height: 22px;
             opacity: 0;
