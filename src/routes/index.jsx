@@ -8,6 +8,7 @@ import PageNotFound from "../pages/PageNotFound";
 import ProtectedRoute from "./ProtectedRoute";
 import DashBoardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
+import DashboardBrands from "../pages/DashboardBrands";
 
 const Ways = () => {
     return (
@@ -28,6 +29,7 @@ const Ways = () => {
                 </Route>
                 <Route path={'/dashboard'} element={<DashBoardLayout />}>
                     <Route index element={<Dashboard />} />
+                    <Route path={'/dashboard/brands'} element={<DashboardBrands />} />
                 </Route>
                 <Route path={'*'} element={<PageNotFound />} />
             </Routes>

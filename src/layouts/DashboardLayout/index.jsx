@@ -3,7 +3,7 @@ import DashboardHeader from "../../components/DashboardHeader";
 
 const DashBoardLayout = () => {
     return (
-        <div className="flex">
+        <div className={'flex'}>
             <DashboardHeader />
             <Outlet />
         </div>

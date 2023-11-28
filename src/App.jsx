@@ -7,6 +7,7 @@ import { queryClient } from "./services";
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
+import './App.css';
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
